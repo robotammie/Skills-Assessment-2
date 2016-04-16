@@ -145,6 +145,8 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
+    # the word 'man' was not in the given pirate dictionary. I added it to mine
+    # because the docstring test implied that it ought to be there
     pirate_dictionary = {'sir': 'matey',
                          'hotel': 'fleabag inn',
                          'student': 'swabbie',
@@ -187,7 +189,12 @@ def sort_by_word_length(words):
         [(1, ['a']), (2, ['ok', 'an']), (3, ['day']), (5, ['apple'])]
     """
 
-    return []
+    word_lengths = {}
+
+    for word in words:
+        word_lengths[len(word)] = word_lengths.get(len(word), []) + [word]
+
+    return word_lengths
 
 
 def get_sum_zero_pairs(numbers):
