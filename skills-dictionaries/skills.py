@@ -145,7 +145,32 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
-    return ""
+    pirate_dictionary = {'sir': 'matey',
+                         'hotel': 'fleabag inn',
+                         'student': 'swabbie',
+                         'boy': 'matey',
+                         'man': 'matey',
+                         'professor': 'foul blaggart',
+                         'restaurant': 'galley',
+                         'your': 'yer',
+                         'excuse': 'arr',
+                         'students': 'swabbies',
+                         'are': 'be',
+                         'restroom': 'head',
+                         'my': 'me',
+                         'is': 'be'}
+
+    word_list = phrase.split()
+
+    pirate_words = [pirate_dictionary[word] if word in pirate_dictionary else word
+                    for word in word_list]
+
+    pirate_text = pirate_words[0]
+
+    for word in pirate_words[1:]:
+        pirate_text += " " + word
+
+    return pirate_text
 
 
 def sort_by_word_length(words):
