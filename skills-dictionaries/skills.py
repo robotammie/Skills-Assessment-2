@@ -64,7 +64,9 @@ def find_unique_common_items(items1, items2):
         [2]
     """
 
-    return []
+    in_common = set(items1) & set(items2)
+
+    return list(in_common)
 
 
 def count_words(phrase):
