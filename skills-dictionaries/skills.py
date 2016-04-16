@@ -94,7 +94,16 @@ def count_words(phrase):
         {'Porcupine': 1, 'do.': 1, 'porcupine': 1, 'see,': 1}
     """
 
-    return {}
+    word_list = phrase.split()
+
+    wordcount = {}
+
+    # is it possible to use a dictionary comprehension for this, or does tha .get
+    # method make the loop too complicated?
+    for word in word_list:
+        wordcount[word] = wordcount.get(word, 0) + 1
+
+    return wordcount
 
 
 def translate_to_pirate_talk(phrase):
