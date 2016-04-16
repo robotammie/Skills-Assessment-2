@@ -194,7 +194,7 @@ def sort_by_word_length(words):
     for word in words:
         word_lengths[len(word)] = word_lengths.get(len(word), []) + [word]
 
-    return word_lengths
+    return word_lengths.items()
 
 
 def get_sum_zero_pairs(numbers):
