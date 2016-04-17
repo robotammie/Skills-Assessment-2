@@ -64,3 +64,46 @@
     so these attributes should be set individually at the instance level.
 
 """
+
+"""Crate Python classes to store the given data."""
+
+
+class Student(object):
+    """Student"""
+
+    first_name = None
+    last_name = None
+    addresss = None
+
+
+class Question(object):
+    """A Question"""
+
+    question = None
+    answer = None
+
+    def ask_and_evaluate(self):
+        """Prints a question and evaluates the submitted answer"""
+
+        student_answer = raw_input(self.question + "\n")
+        print student_answer == self.answer
+
+
+class Exam(object):
+    """An exam"""
+
+    def __init__(self, name):
+        """"Initializes Exam with questions"""
+
+        self.questions = []
+
+    def add_question(self, question, correct_answer):
+        """Adds a question to the exam"""
+
+        self.questions.append({question: correct_answer})
+
+
+myquestion = Question()
+myquestion.question = 'What is Balloonicorn\'s favorite color?'
+myquestion.answer = 'sparkles'
+
