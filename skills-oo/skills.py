@@ -120,6 +120,13 @@ class Exam(object):
         return score
 
 
+def take_test(exam, student):
+    """Administers an exam and records the student's score"""
+
+    student.score = exam.administer()
+
+
+
 myquestion = Question()
 myquestion.question = 'What is Balloonicorn\'s favorite color?'
 myquestion.answer = 'sparkles'
