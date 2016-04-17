@@ -126,6 +126,21 @@ def take_test(exam, student):
     student.score = exam.administer()
 
 
+def example():
+    """Creates a test exam and student, runs exam"""
+
+    test_exam = Exam('test')
+    test_student = Student()
+
+    test_exam.add_question('What is Balloonicorn\'s occupation?', 'municipal ombudsman')
+    test_exam.add_question('Who is Balloonicorn\'s best friend?', 'Pyro')
+    test_exam.add_question('What is Balloonicorn\'s favorite food?', 'cupcakes')
+
+    take_test(test_exam, test_student)
+
+
+
+
 
 myquestion = Question()
 myquestion.question = 'What is Balloonicorn\'s favorite color?'
