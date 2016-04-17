@@ -224,7 +224,16 @@ def get_sum_zero_pairs(numbers):
         [[-1, 1], [0, 0]]
     """
 
-    return []
+    unique_numbers = list(set(numbers))
+
+    inverses = []
+
+    for x in unique_numbers:
+        for y in unique_numbers[x:]:
+            if x + y == 0:
+                inverses += [[x, y]]
+
+    return inverses
 
 
 def kids_game(names):
