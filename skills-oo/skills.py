@@ -86,7 +86,8 @@ class Question(object):
         """Prints a question and evaluates the submitted answer"""
 
         student_answer = raw_input(self.question + "\n")
-        print student_answer == self.answer
+
+        return student_answer == self.answer
 
 
 class Exam(object):
@@ -97,10 +98,26 @@ class Exam(object):
 
         self.questions = []
 
-    def add_question(self, question, correct_answer):
+    def add_question(self, query, correct_answer):
         """Adds a question to the exam"""
 
-        self.questions.append({question: correct_answer})
+        question = Question()
+
+        question.question = query
+        question.answer = correct_answer
+
+        self.questions.append(question)
+
+    def administer(self):
+        """Asks and evaluates all questions in questions"""
+
+        score = 0
+
+        for question in self.questions:
+            if question.ask_and_evaluate():
+                score += 1
+
+        return score
 
 
 myquestion = Question()
