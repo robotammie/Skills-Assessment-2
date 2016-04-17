@@ -274,7 +274,26 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    return []
+    # initiate word chain with first word in the word list
+    word_chain = [names[0]]
+
+    # crate a dictionary linking letters to the inputted words that begin with them,
+    # in the order given
+    first_letters = {}
+
+    for word in names[1:]:  # first word in list is excluded because it's already been used
+        first_letters[word[0]] = first_letters.get(word[0], []) + [word]
+
+    # find the last letter of the first word in the chain
+    last_letter = word_chain[-1][-1]
+
+    # continue adding words until there are no words beginning with the final letter
+    while first_letters[last_letter] != []:
+        word_chain.append(first_letters[last_letter][0])
+        del first_letters[last_letter][0]
+        last_letter = word_chain[-1][-1]
+
+    return word_chain
 
 
 #####################################################################
