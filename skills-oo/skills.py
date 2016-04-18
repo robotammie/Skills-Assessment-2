@@ -91,10 +91,10 @@ class Question(object):
 
 
 class Exam(object):
-    """An exam"""
+    """A major test, graded with a percentage of questions answered correctly"""
 
     def __init__(self, name):
-        """"Initializes Exam with questions"""
+        """Initializes Exam with questions"""
 
         self.questions = []
 
@@ -113,11 +113,34 @@ class Exam(object):
 
         score = 0
 
+        # ask all questions on the exam in order, increment the score if question
+        # is answered correctly
         for question in self.questions:
             if question.ask_and_evaluate():
                 score += 1
 
-        return score
+        # converts score into a percentage grade
+        total_score = (score * 100) / len(self.questions)
+
+        return total_score
+
+
+class Quiz(Exam):
+    """A short, pass/fail test"""
+
+    def __init__(self, name='quiz'):
+        """Initializes quiz"""
+
+        # uses parent class' initiation function
+        super(Quiz, self).__init__(name)
+
+    def administer(self):
+        """Administers the quiz and returns a pass/fail grade"""
+
+        score = super(Quiz, self).administer()
+
+        # checks to see if student answered more than half of the questions correctly
+        return score >= 50
 
 
 def take_test(exam, student):
@@ -126,23 +149,22 @@ def take_test(exam, student):
     student.score = exam.administer()
 
 
-def example():
+def example(exam_type='exam'):
     """Creates a test exam and student, runs exam"""
 
-    test_exam = Exam('test')
+    # instantiate dummy exam and dummy student for testing purposes
+    if exam_type == 'exam':
+        test_exam = Exam('test')
+    else:
+        test_exam = Quiz('test')
+
     test_student = Student()
 
-    test_exam.add_question('What is Balloonicorn\'s occupation?', 'municipal ombudsman')
+    # populate dummy exam with questions
+    test_exam.add_question('What is Balloonicorn\'s occupation?', 'municiple ombudsman')
     test_exam.add_question('Who is Balloonicorn\'s best friend?', 'Pyro')
     test_exam.add_question('What is Balloonicorn\'s favorite food?', 'cupcakes')
 
     take_test(test_exam, test_student)
 
-
-
-
-
-myquestion = Question()
-myquestion.question = 'What is Balloonicorn\'s favorite color?'
-myquestion.answer = 'sparkles'
-
+    print test_student.score
